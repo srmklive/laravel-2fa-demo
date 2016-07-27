@@ -1,0 +1,13 @@
+machine:
+  timezone:
+    America/Los_Angeles # Set the timezone
+  php:
+    version:
+      5.6.22
+test:
+  pre:
+    - cp .env.example .env
+    - php artisan key:generate
+  override:
+    - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+    - phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
