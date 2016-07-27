@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Srmklive\Authy\AuthyServiceProvider::class,
         Srmklive\FlashAlert\FlashAlertServiceProvider::class,       
     ],

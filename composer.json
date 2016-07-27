@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
         "srmklive/authy": "~0.1",
-        "srmklive/flash-notifications": "~0.1"
+        "srmklive/flash-notifications": "~0.1",
+        "barryvdh/laravel-ide-helper": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
