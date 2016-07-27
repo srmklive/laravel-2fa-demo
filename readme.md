@@ -17,11 +17,6 @@ This is a sample laravel application containing 2-factor authentication out of t
 git clone https://github.com/srmklive/laravel-2fa-app.git [your-directory]
 ```
 
-* After the repository is cloned, the default branch is 5.1. To use other laravel versions, use any of the following commands:
-```
-git checkout 5.2 // To use Laravel 5.2
-```
-
 * Now navigate to the directory you cloned the repo into and run the following command
 ```
 composer install
