@@ -69,7 +69,7 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function postRegister(Request $request)
     {
         $validator = $this->validator($request->all());
 
@@ -109,9 +109,7 @@ class AuthController extends Controller
             return redirect(url('login'));
         }
 
-        $guard = config('auth.defaults.guard');
-        $provider = config('auth.guards.' . $guard . '.provider');
-        $model = config('auth.providers.' . $provider . '.model');
+        $model = config('auth.model');
 
         $user = (new $model)->findOrFail(
             $request->session()->pull('authy:auth:id')
@@ -151,7 +149,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function logout()
+    public function getLogout()
     {
         Auth::guard($this->getGuard())->logout();
 

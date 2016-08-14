@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3051fb8a26134d14a3970df259d0aa5a",
+    "hash": "e73c79e896977ec265f04bc8252a15ac",
     "content-hash": "2c2b8efaba124c4cefe8f4b73019feef",
     "packages": [
         {
@@ -1290,16 +1290,16 @@
         },
         {
             "name": "srmklive/authy",
-            "version": "v0.4.5",
+            "version": "v0.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/srmklive/laravel-twofactor-authentication.git",
-                "reference": "fd394e29e7b870fa66ba72edb4e650b3afce619d"
+                "reference": "ce8a25b401d2ae9b1522dda9ccd6b0711f7b2208"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/srmklive/laravel-twofactor-authentication/zipball/fd394e29e7b870fa66ba72edb4e650b3afce619d",
-                "reference": "fd394e29e7b870fa66ba72edb4e650b3afce619d",
+                "url": "https://api.github.com/repos/srmklive/laravel-twofactor-authentication/zipball/ce8a25b401d2ae9b1522dda9ccd6b0711f7b2208",
+                "reference": "ce8a25b401d2ae9b1522dda9ccd6b0711f7b2208",
                 "shasum": ""
             },
             "require": {
@@ -1335,7 +1335,7 @@
                 "laravel two-factor authentication",
                 "two-factor"
             ],
-            "time": "2016-08-12 07:14:43"
+            "time": "2016-08-14 17:57:04"
         },
         {
             "name": "srmklive/flash-notifications",
