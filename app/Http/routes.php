@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
+//Route::auth();
 
 Route::get('auth/token','Auth\AuthController@getToken');
 Route::post('auth/token','Auth\AuthController@postToken');
