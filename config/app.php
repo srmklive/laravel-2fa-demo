@@ -157,7 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Srmklive\Authy\AuthyServiceProvider::class,
+        Srmklive\Authy\Providers\AuthyServiceProvider::class,
         Srmklive\FlashAlert\FlashAlertServiceProvider::class,       
     ],
 
