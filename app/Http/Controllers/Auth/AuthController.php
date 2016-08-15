@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Auth;
-use Authy;
 use FlashAlert;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -42,7 +40,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -54,7 +52,7 @@ class AuthController extends Controller
      */
     protected function authenticated(Request $request, Authenticatable $user)
     {
-        if (Authy::getProvider()->isEnabled($user)) {
+        if (authy()->isEnabled($user)) {
             return $this->logoutAndRedirectToTokenScreen($request, $user);
         }
 
@@ -79,7 +77,7 @@ class AuthController extends Controller
             );
         }
 
-        Auth::login($this->create($request->all()));
+        auth()->login($this->create($request->all()));
 
         FlashAlert::success('Success', 'Registration successful!');
 
@@ -115,8 +113,8 @@ class AuthController extends Controller
             $request->session()->pull('authy:auth:id')
         );
 
-        if (Authy::getProvider()->tokenIsValid($user, $request->token)) {
-            Auth::login($user);
+        if (authy()->tokenIsValid($user, $request->token)) {
+            auth()->login($user);
 
             FlashAlert::success('Success', 'You have successfully logged in!');
 
@@ -137,7 +135,7 @@ class AuthController extends Controller
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
     {
-        Auth::logout();
+        auth()->logout();
 
         $request->session()->put('authy:auth:id', $user->id);
 
@@ -151,7 +149,7 @@ class AuthController extends Controller
      */
     public function getLogout()
     {
-        Auth::logout();
+        auth()->logout();
 
         FlashAlert::success('Success', 'You have successfully logged out!');
 
