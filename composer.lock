@@ -1235,16 +1235,16 @@
         },
         {
             "name": "srmklive/authy",
-            "version": "v0.5.6",
+            "version": "v0.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/srmklive/laravel-twofactor-authentication.git",
-                "reference": "d167ba220eaf690c257e6ae0139dd591d50d399d"
+                "reference": "361d4fdbe34f9b13ef4c11e64cf97c81cad00bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/srmklive/laravel-twofactor-authentication/zipball/d167ba220eaf690c257e6ae0139dd591d50d399d",
-                "reference": "d167ba220eaf690c257e6ae0139dd591d50d399d",
+                "url": "https://api.github.com/repos/srmklive/laravel-twofactor-authentication/zipball/361d4fdbe34f9b13ef4c11e64cf97c81cad00bb9",
+                "reference": "361d4fdbe34f9b13ef4c11e64cf97c81cad00bb9",
                 "shasum": ""
             },
             "require": {
@@ -1280,7 +1280,7 @@
                 "laravel two-factor authentication",
                 "two-factor"
             ],
-            "time": "2016-08-15 07:22:42"
+            "time": "2016-08-15 08:20:48"
         },
         {
             "name": "srmklive/flash-notifications",

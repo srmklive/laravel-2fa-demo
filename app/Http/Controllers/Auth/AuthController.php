@@ -54,7 +54,7 @@ class AuthController extends Controller
      */
     protected function authenticated(Request $request, Authenticatable $user)
     {
-        if (Authy::getProvider()->isEnabled($user)) {
+        if (authy()->isEnabled($user)) {
             return $this->logoutAndRedirectToTokenScreen($request, $user);
         }
 
@@ -79,7 +79,7 @@ class AuthController extends Controller
             );
         }
 
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        auth($this->getGuard())->login($this->create($request->all()));
 
         FlashAlert::success('Success', 'Registration successful!');
 
@@ -117,8 +117,8 @@ class AuthController extends Controller
             $request->session()->pull('authy:auth:id')
         );
 
-        if (Authy::getProvider()->tokenIsValid($user, $request->token)) {
-            Auth::login($user);
+        if (authy()->tokenIsValid($user, $request->token)) {
+            auth($this->getGuard())->login($user);
 
             FlashAlert::success('Success', 'You have successfully logged in!');
 
@@ -139,7 +139,7 @@ class AuthController extends Controller
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
     {
-        Auth::guard($this->getGuard())->logout();
+        auth($this->getGuard())->logout();
 
         $request->session()->put('authy:auth:id', $user->id);
 
@@ -153,7 +153,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        Auth::guard($this->getGuard())->logout();
+        auth($this->getGuard())->logout();
 
         FlashAlert::success('Success', 'You have successfully logged out!');
 
