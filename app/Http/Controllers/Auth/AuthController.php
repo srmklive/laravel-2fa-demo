@@ -42,7 +42,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**
@@ -79,7 +79,7 @@ class AuthController extends Controller
             );
         }
 
-        Auth::guard($this->getGuard())->login($this->create($request->all()));
+        Auth::login($this->create($request->all()));
 
         FlashAlert::success('Success', 'Registration successful!');
 
@@ -137,7 +137,7 @@ class AuthController extends Controller
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
     {
-        Auth::guard($this->getGuard())->logout();
+        Auth::logout();
 
         $request->session()->put('authy:auth:id', $user->id);
 
@@ -151,7 +151,7 @@ class AuthController extends Controller
      */
     public function getLogout()
     {
-        Auth::guard($this->getGuard())->logout();
+        Auth::logout();
 
         FlashAlert::success('Success', 'You have successfully logged out!');
 
