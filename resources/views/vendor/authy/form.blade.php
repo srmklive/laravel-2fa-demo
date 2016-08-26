@@ -1,12 +1,11 @@
 @section('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/flags.authy.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.css" />
 @endsection
 
 @section('content')
 <div class="col-sm-4 col-sm-offset-4">
-    <form method="POST">
+    <form method="POST" action="{{url('auth/two-factor')}}">
         {{csrf_field()}}
         <h3>Enable Two-Factor Authentication</h3>
         <div class="row">
@@ -41,6 +40,5 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.js"></script>
 @endsection

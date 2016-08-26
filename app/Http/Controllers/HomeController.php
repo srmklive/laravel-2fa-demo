@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = auth()->user();
+
+        $twofactor_enabled = authy()->isEnabled($user);
+
+        return view('home', compact('twofactor_enabled'));
     }
 }

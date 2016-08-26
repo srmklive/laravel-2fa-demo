@@ -16,6 +16,7 @@ swal({
     showConfirmButton: "{{config('flashalert.show_confirmation_button')}}"
 });
 </script>
+{{session()->forget('flashalert')}}
 @endif
 
 @endsection

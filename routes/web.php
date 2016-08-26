@@ -17,4 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('auth/token','Auth\TwoFactorController@showTokenForm');
+Route::post('auth/token','Auth\TwoFactorController@validateTokenForm');
+Route::post('auth/two-factor','Auth\TwoFactorController@setupTwoFactorAuth');
+
 Route::get('/home', 'HomeController@index');
