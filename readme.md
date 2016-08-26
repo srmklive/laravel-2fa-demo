@@ -1,60 +1,27 @@
-## Laravel with 2-factor autentication
+# Laravel PHP Framework
 
-This is a sample laravel application containing 2-factor authentication out of the box.
+[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
+[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-## Credits
-### Template Design
-* [AdminLTE](https://github.com/almasaeed2010/AdminLTE) by [Abdullah Almsaeed](https://github.com/almasaeed2010).
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
-### Framework & Libraries
-* [Guzzle](https://github.com/guzzle/guzzle)
-* [Authy PHP SDK](https://github.com/authy/authy-php) by [Authy](https://github.com/authy)
-* [Laravel](https://github.com/laravel/laravel) by [Taylor Otwell](https://github.com/taylorotwell)
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-## Installation
-* First simply clone this repo by using following command:
-```
-git clone https://github.com/srmklive/laravel-2fa-app.git [your-directory]
-```
+## Official Documentation
 
-* Now navigate to the directory you cloned the repo into and run the following command
-```
-composer install
-```
+Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-* Publish configuration & views:
-```
-php artisan vendor:publish
-```
+## Contributing
 
-* Create .env file
-```
-mv .env.example .env
-```
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-* Set application key
-```
-php artisan key:generate
-```
+## Security Vulnerabilities
 
-* Set your database credentials.
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-* Migrate the databases:
-```
-php artisan migrate
-```
+## License
 
-## Authy API Credentials
-To enable 2-factor authentication, you must have a registered developer account with [Authy](https://www.authy.com/). Once you have created an account on Authy, and registered an application. You need to add following variables in your *.env* file, and modify it accordingly to your Authy API credentials.
-```
-AUTHY_MODE=live
-AUTHY_TEST_KEY=[YOUR_AUTHY_APP_TEST_KEY]
-AUTHY_LIVE_KEY=[YOUR_AUTHY_APP_LIVE_KEY]
-AUTHY_SEND_SMS=false
-```
-
-Thats it. You are done with installation. Now you have fully functional Laravel application with 2-factor authentication available out of the box. 
-
-## Documentation
-
-This application uses the [Authy](https://github.com/srmklive/laravel-twofactor-authentication) package. You can find the documentation for the package [here](https://github.com/srmklive/laravel-twofactor-authentication/blob/master/README.md).
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
