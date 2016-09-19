@@ -160,7 +160,7 @@ return [
 
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Srmklive\Authy\Providers\AuthyServiceProvider::class,
-        Srmklive\FlashAlert\FlashAlertServiceProvider::class,       
+        Srmklive\FlashAlert\FlashAlertServiceProvider::class,
     ],
 
     /*
@@ -209,9 +209,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Authy' => Srmklive\Authy\Facades\Authy::class,
+        'Authy'      => Srmklive\Authy\Facades\Authy::class,
         'FlashAlert' => Srmklive\FlashAlert\Facades\FlashAlert::class,
-        
+
     ],
 
 ];
