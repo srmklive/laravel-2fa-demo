@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Auth;
 use Authy;
 use Exception;
 use FlashAlert;
+use Illuminate\Http\Request;
 use Validator;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class TwoFactorController extends Controller
 {
@@ -19,14 +18,15 @@ class TwoFactorController extends Controller
     }
 
     /**
-     * Enable two-factor authentication
+     * Enable two-factor authentication.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|null
      */
     public function postEnable(Request $request)
     {
-        if (! is_null($response = $this->validateEnablingTwoFactorAuth($request))) {
+        if (!is_null($response = $this->validateEnablingTwoFactorAuth($request))) {
             return redirect(url('home'))->withErrors($response);
         }
 
@@ -40,8 +40,9 @@ class TwoFactorController extends Controller
 
         // Check if the user wants to receive token via SMS
         $sms = false;
-        if (!empty($input['sms']))
+        if (!empty($input['sms'])) {
             $sms = true;
+        }
 
         try {
             Authy::getProvider()->register($user, $sms);
@@ -61,7 +62,8 @@ class TwoFactorController extends Controller
     /**
      * Validate an incoming request to enable two-factor authentication.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response|null
      */
     protected function validateEnablingTwoFactorAuth(Request $request)
@@ -73,7 +75,7 @@ class TwoFactorController extends Controller
         }
 
         $validator = Validator::make($input, [
-            'country-code' => 'required|numeric|integer',
+            'country-code'    => 'required|numeric|integer',
             'authy-cellphone' => 'required|numeric',
         ]);
 
@@ -83,9 +85,10 @@ class TwoFactorController extends Controller
     }
 
     /**
-     * Disable two-factor authentication
+     * Disable two-factor authentication.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|nul
      */
     public function postDisable(Request $request)
