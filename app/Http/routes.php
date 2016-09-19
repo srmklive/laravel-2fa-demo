@@ -30,9 +30,9 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
 
-Route::get('auth/token','Auth\AuthController@getToken');
-Route::post('auth/token','Auth\AuthController@postToken');
-Route::post('auth/twofactor/enable','Auth\TwoFactorController@postEnable');
-Route::post('auth/twofactor/disable','Auth\TwoFactorController@postDisable');
+Route::get('auth/token', 'Auth\AuthController@getToken');
+Route::post('auth/token', 'Auth\AuthController@postToken');
+Route::post('auth/twofactor/enable', 'Auth\TwoFactorController@postEnable');
+Route::post('auth/twofactor/disable', 'Auth\TwoFactorController@postDisable');
 
 Route::get('/home', 'HomeController@index');

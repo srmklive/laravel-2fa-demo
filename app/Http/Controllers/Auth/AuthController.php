@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use FlashAlert;
-use Validator;
-use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -46,8 +46,9 @@ class AuthController extends Controller
     /**
      * Send the post-authentication response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
      * @return \Illuminate\Http\Response
      */
     protected function authenticated(Request $request, Authenticatable $user)
@@ -64,7 +65,8 @@ class AuthController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function postRegister(Request $request)
@@ -85,7 +87,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Show two-factor authentication page
+     * Show two-factor authentication page.
      *
      * @return \Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -97,19 +99,20 @@ class AuthController extends Controller
     /**
      * Verify the two-factor authentication token.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function postToken(Request $request)
     {
         $this->validate($request, ['token' => 'required']);
-        if (! session('authy:auth:id')) {
+        if (!session('authy:auth:id')) {
             return redirect(url('login'));
         }
 
         $model = config('auth.model');
 
-        $user = (new $model)->findOrFail(
+        $user = (new $model())->findOrFail(
             $request->session()->pull('authy:auth:id')
         );
 
@@ -129,8 +132,9 @@ class AuthController extends Controller
     /**
      * Generate a redirect response to the two-factor token screen.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
      * @return \Illuminate\Http\Response
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
@@ -159,14 +163,15 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -174,14 +179,15 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

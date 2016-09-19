@@ -43,16 +43,16 @@ class PasswordController extends Controller
     /**
      * Display the password reset view for the given token.
      *
-     * @param  string  $token
+     * @param string $token
+     *
      * @return \Illuminate\Http\Response
      */
     public function getReset($token = null)
     {
         if (is_null($token)) {
-            throw new NotFoundHttpException;
+            throw new NotFoundHttpException();
         }
 
         return view('auth.passwords.reset')->with('token', $token);
     }
-
 }
