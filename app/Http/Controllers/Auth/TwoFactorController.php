@@ -12,7 +12,7 @@ use Validator;
 class TwoFactorController extends Controller
 {
     /**
-     * Show two-factor authentication page
+     * Show two-factor authentication page.
      *
      * @return \Illuminate\Http\Response|\Illuminate\View\View
      */
@@ -24,22 +24,23 @@ class TwoFactorController extends Controller
     /**
      * Verify the two-factor authentication token.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function validateTokenForm(Request $request)
     {
         $this->validate($request, ['token' => 'required']);
 
-        if (! session('authy:auth:id')) {
+        if (!session('authy:auth:id')) {
             return redirect(url('login'));
         }
 
         $guard = config('auth.defaults.guard');
-        $provider = config('auth.guards.' . $guard . '.provider');
-        $model = config('auth.providers.' . $provider . '.model');
+        $provider = config('auth.guards.'.$guard.'.provider');
+        $model = config('auth.providers.'.$provider.'.model');
 
-        $user = (new $model)->findOrFail(
+        $user = (new $model())->findOrFail(
             $request->session()->pull('authy:auth:id')
         );
 
@@ -57,9 +58,10 @@ class TwoFactorController extends Controller
     }
 
     /**
-     * Enable/Disable two-factor authentication
+     * Enable/Disable two-factor authentication.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|null
      */
     public function setupTwoFactorAuth(Request $request)
@@ -76,8 +78,9 @@ class TwoFactorController extends Controller
     /**
      * Enable two-factor authentication.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
      * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     protected function enableTwoFactorAuth(Request $request, Authenticatable $user)
@@ -89,7 +92,7 @@ class TwoFactorController extends Controller
         }
 
         $validator = Validator::make($input, [
-            'country-code' => 'required|numeric|integer',
+            'country-code'    => 'required|numeric|integer',
             'authy-cellphone' => 'required|numeric',
         ]);
 
@@ -119,8 +122,9 @@ class TwoFactorController extends Controller
     /**
      * Disable two-factor authentication.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     protected function disableTwoFactorAuth(Request $request, Authenticatable $user)

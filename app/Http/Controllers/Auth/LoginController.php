@@ -42,8 +42,9 @@ class LoginController extends Controller
     /**
      * Send the post-authentication response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
      * @return \Illuminate\Http\Response
      */
     protected function authenticated(Request $request, Authenticatable $user)
@@ -60,8 +61,9 @@ class LoginController extends Controller
     /**
      * Generate a redirect response to the two-factor token screen.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Illuminate\Contracts\Auth\Authenticatable $user
+     *
      * @return \Illuminate\Http\Response
      */
     protected function logoutAndRedirectToTokenScreen(Request $request, Authenticatable $user)
@@ -72,5 +74,4 @@ class LoginController extends Controller
 
         return redirect(url('auth/token'));
     }
-
 }
