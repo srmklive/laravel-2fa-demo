@@ -2,13 +2,12 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Srmklive\Authy\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatable;
-use Srmklive\Authy\Contracts\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatableContract;
 
-class User extends Authenticatable implements TwoFactorAuthenticatableContract
+class User extends Authenticatable
 {
-    use TwoFactorAuthenticatable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.

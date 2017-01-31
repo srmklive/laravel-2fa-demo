@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Auth;
-use Authy;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,15 +19,10 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = Auth::user();
-
-        $twofactor_enabled = Authy::getProvider()->isEnabled($user);
-
-        return view('home', compact('twofactor_enabled'));
+        return view('home');
     }
 }
