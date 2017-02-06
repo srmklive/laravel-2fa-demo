@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-
+    @include('flashalert::alert')
+    @yield('styles')
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -83,5 +84,6 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    @yield('scripts')
 </body>
 </html>
