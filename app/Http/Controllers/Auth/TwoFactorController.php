@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Exception;
-use FlashAlert;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Srmklive\Authy\Services\Authy as TwoFactorProvider;
-use Validator;
 
 class TwoFactorController extends Controller
 {
@@ -58,11 +55,11 @@ class TwoFactorController extends Controller
         if ($this->provider->tokenIsValid($user, $request->token)) {
             auth($guard)->login($user);
 
-            FlashAlert::success('Success', 'You have successfully logged in!');
+            \FlashAlert::success('Success', 'You have successfully logged in!');
 
             return redirect()->intended('home');
         } else {
-            FlashAlert::error('Error', 'Invalid two-factor authentication token provided!');
+            \FlashAlert::error('Error', 'Invalid two-factor authentication token provided!');
 
             return redirect(url('login'));
         }
@@ -102,7 +99,7 @@ class TwoFactorController extends Controller
             $input['authy-cellphone'] = preg_replace('/[^0-9]/', '', $input['authy-cellphone']);
         }
 
-        $validator = Validator::make($input, [
+        $validator = \Validator::make($input, [
             'country-code'    => 'required|numeric|integer',
             'authy-cellphone' => 'required|numeric',
         ]);
@@ -119,13 +116,13 @@ class TwoFactorController extends Controller
             $this->provider->register($user, !empty($input['sms']) ? true : false);
 
             $user->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             app(ExceptionHandler::class)->report($e);
 
-            FlashAlert::error('Error', 'The provided phone information is invalid.');
+            \FlashAlert::error('Error', 'The provided phone information is invalid.');
         }
 
-        FlashAlert::success('Success', 'Two-factor authentication has been enabled!');
+        \FlashAlert::success('Success', 'Two-factor authentication has been enabled!');
 
         return redirect(url('home'));
     }
@@ -144,13 +141,13 @@ class TwoFactorController extends Controller
             $this->provider->delete($user);
 
             $user->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             app(ExceptionHandler::class)->report($e);
 
-            FlashAlert::error('Error', 'Unable to Delete User');
+            \FlashAlert::error('Error', 'Unable to Delete User');
         }
 
-        FlashAlert::success('Success', 'Two-factor authentication has been disabled!');
+        \FlashAlert::success('Success', 'Two-factor authentication has been disabled!');
 
         return redirect(url('home'));
     }
