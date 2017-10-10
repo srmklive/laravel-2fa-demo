@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use FlashAlert;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Srmklive\Authy\Services\Authy as TwoFactorAuthenticationProvider;
 
 class LoginController extends Controller
 {
@@ -24,6 +24,11 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * @var \Srmklive\Authy\Services\Authy
+     */
+    private $provider;
+
+    /**
      * Where to redirect users after login / registration.
      *
      * @var string
@@ -38,6 +43,8 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+
+        $this->provider = new TwoFactorAuthenticationProvider();
     }
 
     /**
@@ -50,11 +57,11 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, Authenticatable $user)
     {
-        if (authy()->isEnabled($user)) {
+        if ($this->provider->isEnabled($user)) {
             return $this->logoutAndRedirectToTokenScreen($request, $user);
         }
 
-        FlashAlert::success('Success', 'You have successfully logged in!');
+        \FlashAlert::success('Success', 'You have successfully logged in!');
 
         return redirect()->intended($this->redirectPath());
     }
