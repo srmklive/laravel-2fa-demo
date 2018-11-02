@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Srmklive\Authy\Services\Authy as TwoFactorAuthenticationProvider;
 
 class LoginController extends Controller
 {
@@ -24,11 +23,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * @var \Srmklive\Authy\Services\Authy
-     */
-    private $provider;
-
-    /**
      * Where to redirect users after login / registration.
      *
      * @var string
@@ -44,7 +38,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
 
-        $this->provider = new TwoFactorAuthenticationProvider();
+        parent::__construct();
     }
 
     /**

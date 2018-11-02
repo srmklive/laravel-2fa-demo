@@ -12,6 +12,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        parent::__construct();
     }
 
     /**
@@ -23,7 +25,7 @@ class HomeController extends Controller
     {
         $user = auth()->user();
 
-        $twofactor_enabled = authy()->isEnabled($user);
+        $twofactor_enabled = $this->provider->isEnabled($user);
 
         return view('home', compact('twofactor_enabled'));
     }

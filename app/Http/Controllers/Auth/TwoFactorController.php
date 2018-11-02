@@ -5,20 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use Srmklive\Authy\Services\Authy as TwoFactorAuthenticationProvider;
 
 class TwoFactorController extends Controller
 {
-    /**
-     * @var \Srmklive\Authy\Services\Authy
-     */
-    private $provider;
-
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'setupTwoFactorAuth']);
 
-        $this->provider = new TwoFactorAuthenticationProvider();
+        parent::__construct();
     }
 
     /**
@@ -143,7 +137,7 @@ class TwoFactorController extends Controller
             $this->provider->delete($user);
 
             $user->save();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             app(ExceptionHandler::class)->report($e);
 
             \FlashAlert::error('Error', 'Unable to Delete User');
