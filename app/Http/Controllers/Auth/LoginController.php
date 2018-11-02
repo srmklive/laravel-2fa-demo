@@ -37,6 +37,8 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+
+        parent::__construct();
     }
 
     /**
@@ -49,7 +51,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, Authenticatable $user)
     {
-        if (authy()->isEnabled($user)) {
+        if ($this->provider->isEnabled($user)) {
             return $this->logoutAndRedirectToTokenScreen($request, $user);
         }
 
