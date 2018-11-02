@@ -116,13 +116,11 @@ class TwoFactorController extends Controller
             $this->provider->register($user, !empty($input['sms']) ? true : false);
 
             $user->save();
+            
+            \FlashAlert::success('Success', 'Two-factor authentication has been enabled!');
         } catch (\Exception $e) {
-            app(ExceptionHandler::class)->report($e);
-
             \FlashAlert::error('Error', 'The provided phone information is invalid.');
         }
-
-        \FlashAlert::success('Success', 'Two-factor authentication has been enabled!');
 
         return redirect(url('home'));
     }
@@ -141,13 +139,11 @@ class TwoFactorController extends Controller
             $this->provider->delete($user);
 
             $user->save();
+            
+            \FlashAlert::success('Success', 'Two-factor authentication has been disabled!');
         } catch (\Exception $e) {
-            app(ExceptionHandler::class)->report($e);
-
             \FlashAlert::error('Error', 'Unable to Delete User');
         }
-
-        \FlashAlert::success('Success', 'Two-factor authentication has been disabled!');
 
         return redirect(url('home'));
     }
