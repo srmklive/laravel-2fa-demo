@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @include('flashalert::alert')
     @yield('styles')
+    @yield('flashalert.styles')
 </head>
 <body>
     <div id="app">
@@ -79,5 +80,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
+    @yield('flashalert.scripts')
 </body>
 </html>
