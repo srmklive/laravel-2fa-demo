@@ -116,10 +116,10 @@ class TwoFactorController extends Controller
             $this->provider->register($user, !empty($input['sms']) ? true : false);
 
             $user->save();
-            
+
             \FlashAlert::success('Success', 'Two-factor authentication has been enabled!');
         } catch (\Exception $e) {
-            \FlashAlert::error('Error', 'Unable to enable two-factor authentication due to the following reasons: \n' . $e->getMessage());
+            \FlashAlert::error('Error', 'Unable to enable two-factor authentication due to the following reasons: \n'.$e->getMessage());
         }
 
         return redirect(url('home'));
@@ -139,10 +139,10 @@ class TwoFactorController extends Controller
             $this->provider->delete($user);
 
             $user->save();
-            
+
             \FlashAlert::success('Success', 'Two-factor authentication has been disabled!');
         } catch (\Exception $e) {
-            \FlashAlert::error('Error', 'Unable to disable two-factor authentication due to the following reasons: \n' . $e->getMessage());
+            \FlashAlert::error('Error', 'Unable to disable two-factor authentication due to the following reasons: \n'.$e->getMessage());
         }
 
         return redirect(url('home'));
