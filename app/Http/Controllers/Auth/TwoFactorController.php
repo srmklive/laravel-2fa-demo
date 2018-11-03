@@ -119,7 +119,7 @@ class TwoFactorController extends Controller
             
             \FlashAlert::success('Success', 'Two-factor authentication has been enabled!');
         } catch (\Exception $e) {
-            \FlashAlert::error('Error', 'The provided phone information is invalid.');
+            \FlashAlert::error('Error', 'Unable to enable two-factor authentication due to the following reasons: \n' . $e->getMessage());
         }
 
         return redirect(url('home'));
@@ -142,7 +142,7 @@ class TwoFactorController extends Controller
             
             \FlashAlert::success('Success', 'Two-factor authentication has been disabled!');
         } catch (\Exception $e) {
-            \FlashAlert::error('Error', 'Unable to Delete User');
+            \FlashAlert::error('Error', 'Unable to disable two-factor authentication due to the following reasons: \n' . $e->getMessage());
         }
 
         return redirect(url('home'));
