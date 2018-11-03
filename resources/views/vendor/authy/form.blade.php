@@ -4,7 +4,7 @@
 @endsection
 
 <div class="col-sm-4 col-sm-offset-4">
-    <form method="POST">
+    <form method="POST" action="{{url('auth/two-factor')}}">
         {{csrf_field()}}
         <h3>Enable Two-Factor Authentication</h3>
         <div class="row">
